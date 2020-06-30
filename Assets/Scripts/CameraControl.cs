@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] private float movementLag = 1f;
-    public Transform shipCam = null;
-    [SerializeField] private Vector3 distanceFromShip = Vector3.zero;
+    [SerializeField] private float transLag = 1f;
+    [SerializeField] private Vector3 transitionDistance = Vector3.zero;
+    private bool hasPlayerTransitioned = false;
+
+    private Vector3 transFinalPosition = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transFinalPosition = transform.position + transitionDistance;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        SmoothCamFollow();
+        if(hasPlayerTransitioned)
+        MoveCamera();
+    }
+    
+    void MoveCamera()
+    {
+        transform.position = Vector3.Lerp(transform.position, transFinalPosition, transLag);
+
+        if(transform.position == (transFinalPosition))
+        Destroy(gameObject.GetComponent<CameraControl>());
     }
 
-    void SmoothCamFollow()
-    {
-        shipCam.position = Vector3.Lerp(shipCam.position,transform.position + distanceFromShip, movementLag *  Time.deltaTime);
-        shipCam.LookAt(transform.position, Vector3.up);
-    }
+    public void SetHasPlayerTransed(bool hpt)
+    { hasPlayerTransitioned = hpt; }
 }

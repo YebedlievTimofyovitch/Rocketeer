@@ -12,7 +12,8 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private float deathForce = 10f;
     private bool hasCrashed = false;
     private bool hasDied = false;
-    private Vector3 contactNormal = Vector3.zero;
+    private bool hasLanded = false;
+    private Vector3 deathForceDirection = Vector3.zero;
 
     private void Awake()
     {
@@ -70,21 +71,54 @@ public class ShipControls : MonoBehaviour
     {
         if (!hasDied)
         {
-            rb.useGravity = false;
-
-            rb.velocity = Vector3.zero;
-            rb.AddForce(contactNormal * deathForce);
+            DeathPhysics();
 
             hasDied = true;
         }
     }
 
+    private void DeathPhysics()
+    {
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.AddForceAtPosition(-deathForceDirection.normalized * deathForce,transform.position);
+    }
+
     private void OnCollisionEnter(Collision obstacle)
     {
-        if(obstacle.transform.tag == "Obstacle")
+        if(obstacle.transform.tag == "Obstacle" && !hasLanded)
         {
-            contactNormal = obstacle.GetContact(0).normal;
+            deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "LandingPad")
+        {
+            hasLanded = true;
+            transform.parent = other.transform;
+        }
+
+        if(other.tag == "SceneTransitioner")
+        {
+            CameraControl mainCam = FindObjectOfType<CameraControl>();
+            mainCam.SetHasPlayerTransed(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "LandingPad")
+        {
+            hasLanded = false;
+            transform.parent = null;
+        }
+
+        if (other.tag == "SceneTransitioner")
+        {
+            Destroy(other);
         }
     }
 }

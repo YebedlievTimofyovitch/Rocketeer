@@ -6,6 +6,8 @@ TagManager:
   tags:
   - player
   - Obstacle
+  - LandingPad
+  - SceneTransitioner
   layers:
   - Default
   - TransparentFX

@@ -6,17 +6,20 @@ public class Obstacle : MonoBehaviour
 {
     private Rigidbody obstacleRB = null;
 
-    [SerializeField]private float speedMinRange = 1f;
-    [SerializeField]private float speedMaxRange = 3f;
+    [SerializeField]private float speed = 50f;
 
     private void Start()
     {
         obstacleRB = GetComponent<Rigidbody>();
-        obstacleRB.velocity = (Vector3.down * Time.deltaTime * Random.Range(speedMinRange,speedMaxRange));
+        obstacleRB.velocity = (Vector3.down * Time.deltaTime * speed);
+
+        
     }
 
     private void FixedUpdate()
     {
-        
+
     }
+
+    
 }
