@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - LandingPad
   - SceneTransitioner
+  - DeathLine
   layers:
   - Default
   - TransparentFX

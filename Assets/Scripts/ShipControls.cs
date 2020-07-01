@@ -106,6 +106,13 @@ public class ShipControls : MonoBehaviour
             CameraControl mainCam = FindObjectOfType<CameraControl>();
             mainCam.SetHasPlayerTransed(true);
         }
+
+        if(other.tag == "DeathLine")
+        {
+            rb.AddForce(Vector3.up * deathForce);
+            hasCrashed = true;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -118,7 +125,10 @@ public class ShipControls : MonoBehaviour
 
         if (other.tag == "SceneTransitioner")
         {
-            Destroy(other);
+            GameObject.FindGameObjectWithTag("DeathLine").GetComponent<BoxCollider>().enabled = true;
+            Destroy(other.gameObject);
         }
+
+        
     }
 }

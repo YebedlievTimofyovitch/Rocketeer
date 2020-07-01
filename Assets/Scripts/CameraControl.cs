@@ -26,7 +26,6 @@ public class CameraControl : MonoBehaviour
     void MoveCamera()
     {
         transform.position = Vector3.Lerp(transform.position, transFinalPosition, transLag);
-
         if(transform.position == (transFinalPosition))
         Destroy(gameObject.GetComponent<CameraControl>());
     }
