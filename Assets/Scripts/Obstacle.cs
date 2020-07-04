@@ -12,8 +12,6 @@ public class Obstacle : MonoBehaviour
     {
         obstacleRB = GetComponent<Rigidbody>();
         obstacleRB.velocity = (Vector3.down * Time.deltaTime * speed);
-
-        
     }
 
     private void FixedUpdate()
@@ -21,5 +19,16 @@ public class Obstacle : MonoBehaviour
 
     }
 
-    
+    public float GateZPosition()
+    {
+        return transform.position.z;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "ObstacleKiller")
+            Destroy(gameObject);
+    }
+
+
 }

@@ -32,4 +32,9 @@ public class CameraControl : MonoBehaviour
 
     public void SetHasPlayerTransed(bool hpt)
     { hasPlayerTransitioned = hpt; }
+
+    public bool GetHasPlayerTransed()
+    {
+        return hasPlayerTransitioned;
+    }
 }

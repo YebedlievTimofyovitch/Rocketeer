@@ -109,7 +109,6 @@ public class ShipControls : MonoBehaviour
 
         if(other.tag == "DeathLine")
         {
-            rb.AddForce(Vector3.up * deathForce);
             hasCrashed = true;
         }
 
@@ -125,7 +124,13 @@ public class ShipControls : MonoBehaviour
 
         if (other.tag == "SceneTransitioner")
         {
-            GameObject.FindGameObjectWithTag("DeathLine").GetComponent<BoxCollider>().enabled = true;
+            foreach(GameObject dLine in GameObject.FindGameObjectsWithTag("DeathLine"))
+            {
+                if(!dLine.GetComponent<BoxCollider>().enabled)
+                dLine.GetComponent<BoxCollider>().enabled = true;
+            }
+
+
             Destroy(other.gameObject);
         }
 

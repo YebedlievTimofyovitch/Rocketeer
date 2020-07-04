@@ -293,11 +293,11 @@ GameObject:
   - component: {fileID: 5686445104734665196}
   - component: {fileID: 5686445104734665197}
   - component: {fileID: 5686445104734665186}
-  - component: {fileID: 5686445104734665187}
   - component: {fileID: 5686445104734665184}
+  - component: {fileID: 1609627077}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,9 +309,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5686445104734665185}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.72, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.7, z: 0.4}
+  m_LocalScale: {x: 0.25, y: 0.5, z: 0.3}
   m_Children:
   - {fileID: 5686445103746349845}
   - {fileID: 5686445103529673241}
@@ -395,21 +395,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 98
   m_CollisionDetection: 0
---- !u!114 &5686445104734665187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5686445104734665185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e064bb291e4b4ab469e1f0afe26db252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementLag: 50
-  shipCam: {fileID: 0}
-  distanceFromShip: {x: 10, y: 0, z: 0}
 --- !u!114 &5686445104734665184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,3 +410,16 @@ MonoBehaviour:
   thrustStrength: 750
   rotationStrength: 150
   angleVelDrag: 10
+  deathForce: 75
+--- !u!114 &1609627077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686445104734665185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d895ae2d33d86ab48adb913c1dcdaeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
