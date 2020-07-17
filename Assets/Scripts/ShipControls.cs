@@ -10,9 +10,8 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private float angleVelDrag = 10f;
 
     [SerializeField] private float deathForce = 10f;
-    private bool hasCrashed = false;
+    public bool hasCrashed = false;
     private bool hasDied = false;
-    private bool hasLanded = false;
     private Vector3 deathForceDirection = Vector3.zero;
 
     private void Awake()
@@ -28,7 +27,7 @@ public class ShipControls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!hasCrashed)
         {
@@ -86,7 +85,7 @@ public class ShipControls : MonoBehaviour
 
     private void OnCollisionEnter(Collision obstacle)
     {
-        if(obstacle.transform.tag == "Obstacle" && !hasLanded)
+        if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp")
         {
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
@@ -95,12 +94,6 @@ public class ShipControls : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "LandingPad")
-        {
-            hasLanded = true;
-            transform.parent = other.transform;
-        }
-
         if(other.tag == "SceneTransitioner")
         {
             CameraControl mainCam = FindObjectOfType<CameraControl>();
@@ -111,14 +104,12 @@ public class ShipControls : MonoBehaviour
         {
             hasCrashed = true;
         }
-
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "LandingPad")
         {
-            hasLanded = false;
             transform.parent = null;
         }
 

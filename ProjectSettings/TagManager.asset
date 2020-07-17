@@ -10,6 +10,8 @@ TagManager:
   - SceneTransitioner
   - DeathLine
   - ObstacleKiller
+  - Terrain
+  - ObstacleExp
   layers:
   - Default
   - TransparentFX
