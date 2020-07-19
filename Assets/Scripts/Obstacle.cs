@@ -8,9 +8,10 @@ public class Obstacle : MonoBehaviour
 
     [SerializeField] private float rotationStrength = 50f;
     [SerializeField] private float speed = 50f;
-    [SerializeField] private float ExpRadius = 1f;
+    [SerializeField] private float expRadius = 1f;
+    [SerializeField] private float explosionForce = 10f;
 
-    [SerializeField] private GameObject childParticleObject = null;
+    [SerializeField] private GameObject[] childParticleObjects = new GameObject[2] { null, null };
 
     private void Start()
     {
@@ -39,26 +40,45 @@ public class Obstacle : MonoBehaviour
 
     private void ObstacleExplosion()
     {
-        Collider[] objectsInExpRadius = Physics.OverlapSphere(transform.position, ExpRadius);
+        Collider[] objectsInExpRadius = Physics.OverlapSphere(transform.position, expRadius);
         foreach(Collider col in objectsInExpRadius)
         {
-            if (col.GetComponent<Obstacle>() == null)
+            if (col.gameObject.tag == "Player")
             {
-                if (col.gameObject.tag == "Player")
-                    print("Destroyed Player");
+                ShipControls shipSC = col.GetComponent<ShipControls>();
+
+                if(shipSC != null)
+                shipSC.DeathFX();
+
+                //////////////////////////////////////
+
+                Rigidbody shipRB = col.GetComponent<Rigidbody>();
+
+                if(shipRB != null)
+                shipRB.AddExplosionForce(explosionForce,transform.position,expRadius);
             }
             else
             {
                 Obstacle colObs = col.GetComponent<Obstacle>();
-                colObs.ObsDestruction(col.gameObject);
+
+                if(colObs != null)
+                colObs.ObstacleDestruct();
             }
         }
     }
 
-    public void ObsDestruction(GameObject g)
+    public void ObstacleDestruct()
     {
-        MeshRenderer obsMesh = g.GetComponent<MeshRenderer>();
-        obsMesh.material.color = Color.white;
+        foreach (GameObject childPS in childParticleObjects)
+        {
+            if (childPS != null)
+            {
+                childPS.transform.parent = null;
+                ParticleSystem cpoParticleSystem = childPS.GetComponent<ParticleSystem>();
+                cpoParticleSystem.Play();
+            }
+        }
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,32 +89,22 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(gameObject.tag == "ObstacleExp")
+        if (other.transform.tag == "ObstacleExp")
         {
-            ParticleSystem[] explosionVFXchildren = GetComponentsInChildren<ParticleSystem>();
-            foreach(ParticleSystem childPS in explosionVFXchildren)
+            if (gameObject.tag == "ObstacleExp")
             {
-                childPS.transform.parent = null;
-                Destroy(gameObject);
-                ParticleSystem cpoParticleSystem = childPS.GetComponent<ParticleSystem>();
-                cpoParticleSystem.Play();
-                var particleSystemMain = cpoParticleSystem.main;
-                particleSystemMain.stopAction = ParticleSystemStopAction.Destroy;
+                ObstacleExplosion();
             }
-            Destroy(gameObject);
+            ObstacleDestruct();
         }
-        else
+        else if(gameObject.tag == "ObstacleExp" && other.transform.tag == "Player")
         {
-            childParticleObject.transform.parent = null;
-            Destroy(gameObject);
-            ParticleSystem cpoParticleSystem = childParticleObject.GetComponent<ParticleSystem>();
-            cpoParticleSystem.Play();
-            var particleSystemMain = cpoParticleSystem.main;
-            particleSystemMain.stopAction = ParticleSystemStopAction.Destroy;
+            ObstacleExplosion();
         }
     }
 
-    
+   
+
 
 
 }

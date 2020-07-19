@@ -66,7 +66,7 @@ public class ShipControls : MonoBehaviour
         rb.angularVelocity = new Vector3(xAngVel,0f,0f);
     }
 
-    private void DeathFX()
+    public void DeathFX()
     {
         if (!hasDied)
         {
@@ -80,6 +80,7 @@ public class ShipControls : MonoBehaviour
     {
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
+        if(deathForceDirection != Vector3.zero)
         rb.AddForceAtPosition(-deathForceDirection.normalized * deathForce,transform.position);
     }
 
