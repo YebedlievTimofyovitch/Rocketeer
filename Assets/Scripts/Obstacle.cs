@@ -89,17 +89,14 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.tag == "ObstacleExp")
+        if (gameObject.tag == "ObstacleExp")
         {
-            if (gameObject.tag == "ObstacleExp")
-            {
-                ObstacleExplosion();
-            }
             ObstacleDestruct();
-        }
-        else if(gameObject.tag == "ObstacleExp" && other.transform.tag == "Player")
-        {
             ObstacleExplosion();
+        }
+        else
+        {
+            ObstacleDestruct();
         }
     }
 

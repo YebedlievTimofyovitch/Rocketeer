@@ -6,30 +6,36 @@ public class Ship : MonoBehaviour
 {
     private int score = 0;
 
-    [SerializeField] private int targetFPS = 30; 
+    [SerializeField] private int targetFPS = 30;
 
     private void Start()
     {
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 0;
+        StartCoroutine(TrackScore());
     }
 
     private void Update()
     {
-        if(Application.targetFrameRate != targetFPS)
+        if (Application.targetFrameRate != targetFPS)
         {
             Application.targetFrameRate = targetFPS;
         }
     }
 
-    public int GetScore()
+    private IEnumerator TrackScore()
     {
-        if(transform.position.z > score)
-        {
-            score += Mathf.RoundToInt(Time.deltaTime);
-        }
+        while (true) { }
+    }
 
+    public int GetScore()
+    { 
         return score;
+    }
+
+    public void AddToScore(int s)
+    {
+        score += s;
     }
 
    

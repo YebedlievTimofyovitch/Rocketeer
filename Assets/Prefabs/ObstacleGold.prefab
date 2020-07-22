@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1611724135606174621}
   m_Layer: 0
   m_Name: ObstacleGold
-  m_TagString: Obstacle
+  m_TagString: ObstacleGold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationStrength: 2
   speed: 2
-  expRadius: 1
-  explosionForce: 10
+  expRadius: 0
+  explosionForce: 0
   childParticleObjects:
   - {fileID: 5296147331640244531}
   - {fileID: 0}

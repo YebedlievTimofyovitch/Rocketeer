@@ -12,6 +12,7 @@ TagManager:
   - ObstacleKiller
   - Terrain
   - ObstacleExp
+  - ObstacleGold
   layers:
   - Default
   - TransparentFX

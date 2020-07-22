@@ -86,7 +86,7 @@ public class ShipControls : MonoBehaviour
 
     private void OnCollisionEnter(Collision obstacle)
     {
-        if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp")
+        if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
         {
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;

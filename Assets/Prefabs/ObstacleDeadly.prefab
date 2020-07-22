@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationStrength: 2
   speed: 2
-  expRadius: 1
+  expRadius: 1.5
   explosionForce: 10
   childParticleObjects:
   - {fileID: 8816140699913760928}
