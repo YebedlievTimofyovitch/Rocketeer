@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GoldCoin : MonoBehaviour
 {
+    private bool hasCollidedWithPlayer = false;
+
+    [SerializeField] private Transform childSparkle = null;
     [SerializeField] private float lerpSpeed = 10f;
     [SerializeField] private Transform player = null;
     [SerializeField] private Collider coinTrigger = null;
@@ -11,25 +14,37 @@ public class GoldCoin : MonoBehaviour
 
     private void Start()
     {
-        
-
-        StartCoroutine(MoveCoinToPlayer());
     }
 
-    private IEnumerator MoveCoinToPlayer()
+    private void Update()
     {
-        while (true)
-        {
-            Vector3.Lerp(transform.position , player.position , lerpSpeed);
-            yield return new WaitForSeconds(.5f);
-        }
+        MoveCoinToPlayer();
+    }
+
+    private void CoinCollectionEvent()
+    {
+        hasCollidedWithPlayer = true;
+        CoinCollector.AddToScore(1);
+        childSparkle.parent = null;
+        ParticleSystem childPS = childSparkle.GetComponent<ParticleSystem>();
+        var cpsMain = childPS.main;
+        cpsMain.loop = false;
+        cpsMain.startSpeed = 25f;
+        Destroy(gameObject);
+    }
+
+    private void MoveCoinToPlayer()
+    {
+        transform.position = Vector3.Lerp(transform.position, player.position, lerpSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other == coinTrigger)
+        if(other == coinTrigger && !hasCollidedWithPlayer)
         {
-            CoinCollector.AddToScore(1);
+            CoinCollectionEvent();
         }
     }
+
+    
 }

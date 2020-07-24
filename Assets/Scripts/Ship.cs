@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -7,12 +8,12 @@ public class Ship : MonoBehaviour
     private int score = 0;
 
     [SerializeField] private int targetFPS = 30;
+    [SerializeField] private Text scoreText = null;
 
     private void Start()
     {
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 0;
-        StartCoroutine(TrackScore());
     }
 
     private void Update()
@@ -23,11 +24,6 @@ public class Ship : MonoBehaviour
         }
     }
 
-    private IEnumerator TrackScore()
-    {
-        while (true) { }
-    }
-
     public int GetScore()
     { 
         return score;
@@ -36,7 +32,6 @@ public class Ship : MonoBehaviour
     public void AddToScore(int s)
     {
         score += s;
+        scoreText.text = score.ToString();
     }
-
-   
 }
