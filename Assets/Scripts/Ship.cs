@@ -32,6 +32,6 @@ public class Ship : MonoBehaviour
     public void AddToScore(int s)
     {
         score += s;
-        scoreText.text = score.ToString();
+        scoreText.text = "SCORE: " + score.ToString();
     }
 }
