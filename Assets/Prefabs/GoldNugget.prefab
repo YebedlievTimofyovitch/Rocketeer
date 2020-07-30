@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4235584116160071847}
   - component: {fileID: 4235584116160071846}
   - component: {fileID: 4235584116160071850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GoldNugget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childSparkle: {fileID: 4235584118163924348}
   lerpSpeed: 1
-  player: {fileID: 0}
-  coinTrigger: {fileID: 0}
-  CoinCollector: {fileID: 0}
 --- !u!64 &4235584116160071850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -124,7 +121,7 @@ GameObject:
   - component: {fileID: 4235584118163924348}
   - component: {fileID: 4235584118163924350}
   - component: {fileID: 4235584118163924349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

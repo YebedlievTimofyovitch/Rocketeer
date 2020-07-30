@@ -8,12 +8,14 @@ public class GoldCoin : MonoBehaviour
 
     [SerializeField] private Transform childSparkle = null;
     [SerializeField] private float lerpSpeed = 10f;
-    [SerializeField] private Transform player = null;
-    [SerializeField] private Collider coinTrigger = null;
-    [SerializeField] private Ship CoinCollector = null;
+
+     private GameObject player = null;
+     private Ship CoinCollector = null;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        CoinCollector = FindObjectOfType<Ship>();
     }
 
     private void Update()
@@ -35,15 +37,15 @@ public class GoldCoin : MonoBehaviour
 
     private void MoveCoinToPlayer()
     {
-        transform.position = Vector3.Lerp(transform.position, player.position, lerpSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, player.transform.position, lerpSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other == coinTrigger && !hasCollidedWithPlayer)
-        {
+        
+        if(!hasCollidedWithPlayer)
             CoinCollectionEvent();
-        }
+        
     }
 
     

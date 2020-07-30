@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class ShipCannon : MonoBehaviour
 {
+    public bool playerDied = false;
     private bool isHeated = false;
     [SerializeField] private float cannonCoolDown = 10f;
     private float cannonHeat = 0f;
+
 
     private ParticleSystem cannonPS = null;
     [SerializeField] private Slider HeatSlider = null;
@@ -21,7 +23,7 @@ public class ShipCannon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !playerDied)
         {
             ShootRound();
         }

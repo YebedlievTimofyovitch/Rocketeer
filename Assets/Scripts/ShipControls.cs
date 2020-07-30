@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ShipControls : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody rb = null;
+    private ShipCannon shipCannnon;
     [SerializeField] private float thrustStrength = 10f;
     [SerializeField] private float rotationStrength = 10f;
     [SerializeField] private float angleVelDrag = 10f;
 
     [SerializeField] private float deathForce = 10f;
     public bool hasCrashed = false;
-    private bool hasDied = false;
     private Vector3 deathForceDirection = Vector3.zero;
 
     private void Awake()
@@ -22,7 +22,7 @@ public class ShipControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        shipCannnon = GetComponent<ShipCannon>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -68,11 +68,14 @@ public class ShipControls : MonoBehaviour
 
     public void DeathFX()
     {
-        if (!hasDied)
+        if (!hasCrashed)
         {
             DeathPhysics();
 
-            hasDied = true;
+            if (shipCannnon != null)
+                shipCannnon.playerDied = true;
+
+            hasCrashed = true;
         }
     }
 
@@ -88,6 +91,9 @@ public class ShipControls : MonoBehaviour
     {
         if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
         {
+            if(shipCannnon != null)
+            shipCannnon.playerDied = true;
+
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
         }

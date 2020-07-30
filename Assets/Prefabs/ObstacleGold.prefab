@@ -129,6 +129,9 @@ MonoBehaviour:
   speed: 2
   expRadius: 0
   explosionForce: 0
+  shouldDropNugget: 1
+  goldNugget: {fileID: 4235584116160071843, guid: 6eb38135e4f8dd6468321e58e484d9c3,
+    type: 3}
   childParticleObjects:
   - {fileID: 5296147331640244531}
   - {fileID: 0}

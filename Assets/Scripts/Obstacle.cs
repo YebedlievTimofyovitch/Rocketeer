@@ -10,6 +10,8 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float speed = 50f;
     [SerializeField] private float expRadius = 1f;
     [SerializeField] private float explosionForce = 10f;
+    [SerializeField] private bool shouldDropNugget = false;
+    [SerializeField] private GameObject goldNugget = null;
 
     [SerializeField] private GameObject[] childParticleObjects = new GameObject[2] { null, null };
 
@@ -78,6 +80,10 @@ public class Obstacle : MonoBehaviour
                 cpoParticleSystem.Play();
             }
         }
+
+        if (shouldDropNugget && goldNugget != null)
+            Instantiate(goldNugget, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
@@ -94,13 +100,24 @@ public class Obstacle : MonoBehaviour
             ObstacleDestruct();
             ObstacleExplosion();
         }
-        else
-        {
-            ObstacleDestruct();
-        }
+        
     }
 
-   
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.tag == "Cannon")
+        {
+            if (gameObject.tag == "ObstacleExp")
+            {
+                ObstacleDestruct();
+                ObstacleExplosion();
+            }
+            else
+            {
+                ObstacleDestruct();
+            }
+        }
+    }
 
 
 
