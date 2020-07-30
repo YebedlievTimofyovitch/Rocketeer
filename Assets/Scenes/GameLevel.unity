@@ -1699,6 +1699,11 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 55
       objectReference: {fileID: 0}
+    - target: {fileID: 921856601264565469, guid: a8f8ff90c519ddc42b523d2949d48370,
+        type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 555968229, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
       propertyPath: m_Layer
       value: 8
