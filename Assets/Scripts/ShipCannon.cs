@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ShipCannon : MonoBehaviour
 {
-    public bool playerDied = false;
     private bool isHeated = false;
     [SerializeField] private float cannonCoolDown = 10f;
     private float cannonHeat = 0f;
 
-
+    private ShipControls shipC = null;
+    private bool shipCrashBool = false;
     private ParticleSystem cannonPS = null;
     [SerializeField] private Slider HeatSlider = null;
     [SerializeField] private Text CannonSatutsText = null;
@@ -18,12 +18,18 @@ public class ShipCannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shipC = GetComponent<ShipControls>();
         cannonPS = GetComponent<ParticleSystem>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !playerDied)
+        if(shipC != null)
+        {
+            shipCrashBool = shipC.hasCrashed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !shipCrashBool)
         {
             ShootRound();
         }

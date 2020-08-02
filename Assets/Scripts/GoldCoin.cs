@@ -37,6 +37,8 @@ public class GoldCoin : MonoBehaviour
 
     private void MoveCoinToPlayer()
     {
+        
+
         transform.position = Vector3.Lerp(transform.position, player.transform.position, lerpSpeed * Time.deltaTime);
     }
 

@@ -82,7 +82,7 @@ public class Obstacle : MonoBehaviour
         }
 
         if (shouldDropNugget && goldNugget != null)
-            Instantiate(goldNugget, transform.position, Quaternion.identity);
+            Instantiate(goldNugget, transform.position , Quaternion.identity);
 
         Destroy(gameObject);
     }

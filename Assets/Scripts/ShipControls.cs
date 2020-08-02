@@ -22,7 +22,6 @@ public class ShipControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shipCannnon = GetComponent<ShipCannon>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -72,8 +71,7 @@ public class ShipControls : MonoBehaviour
         {
             DeathPhysics();
 
-            if (shipCannnon != null)
-                shipCannnon.playerDied = true;
+            
 
             hasCrashed = true;
         }
@@ -91,8 +89,7 @@ public class ShipControls : MonoBehaviour
     {
         if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
         {
-            if(shipCannnon != null)
-            shipCannnon.playerDied = true;
+            
 
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
