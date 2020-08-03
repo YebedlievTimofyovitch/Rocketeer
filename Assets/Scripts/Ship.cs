@@ -13,7 +13,6 @@ public class Ship : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 30;
-        QualitySettings.vSyncCount = 0;
     }
 
     private void Update()
