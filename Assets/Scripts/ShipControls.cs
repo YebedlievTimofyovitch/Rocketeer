@@ -10,7 +10,9 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private float rotationStrength = 10f;
     [SerializeField] private float angleVelDrag = 10f;
 
+    [SerializeField] private ParticleSystem ThrusterPS = null;
     [SerializeField] private float deathForce = 10f;
+    private bool ThrusterOn = false;
     public bool hasCrashed = false;
     private Vector3 deathForceDirection = Vector3.zero;
 
@@ -32,11 +34,24 @@ public class ShipControls : MonoBehaviour
         {
             ShipThrust();
             ShipRotaion();
+            ManageThrusterSmoke();
         }
         else if(hasCrashed)
         {
             DeathFX();
         }
+    }
+
+    private void ManageThrusterSmoke()
+    {
+        var thrusterEmission = ThrusterPS.emission;
+        if (ThrusterOn)
+        {
+            thrusterEmission.rateOverTime = 20f;
+        }
+        else
+            thrusterEmission.rateOverTime = 0f;
+
     }
 
     private void ShipThrust()
