@@ -12,10 +12,12 @@ public class ShipControls : MonoBehaviour
 
     [SerializeField] private ParticleSystem ThrusterPS = null;
     [SerializeField] private float deathForce = 10f;
-    private bool ThrusterOn = false;
+    
     public bool hasCrashed = false;
     private Vector3 deathForceDirection = Vector3.zero;
 
+    private bool isRotating = false;
+    private bool ThrusterOn = false;
     private void Awake()
     {
 
@@ -33,8 +35,7 @@ public class ShipControls : MonoBehaviour
         if (!hasCrashed)
         {
             ShipThrust();
-            ShipRotaion();
-            ManageThrusterSmoke();
+            ShipRotaion(0f);
         }
         else if(hasCrashed)
         {
@@ -42,28 +43,32 @@ public class ShipControls : MonoBehaviour
         }
     }
 
-    private void ManageThrusterSmoke()
+    public void ManageThrusterSmoke(float te)
     {
         var thrusterEmission = ThrusterPS.emission;
-        if (ThrusterOn)
-        {
-            thrusterEmission.rateOverTime = 20f;
-        }
-        else
-            thrusterEmission.rateOverTime = 0f;
+        thrusterEmission.rateOverTime = te;
 
     }
 
+    #region thruster management
     private void ShipThrust()
     {
-        rb.AddForce(transform.up * Input.GetAxis("Vertical") * thrustStrength * Time.deltaTime);
+        if(ThrusterOn)
+        rb.AddForce(transform.up * thrustStrength * Time.deltaTime);
     }
 
-    private void ShipRotaion()
+    public void TurnThrusterOnOff(bool to)
+    {
+        ThrusterOn = to;
+    }
+    #endregion
+
+    #region rotation management
+    public void ShipRotaion(float rotationDirection)
     {
         var xAngVel = rb.angularVelocity.x;
 
-        if((!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D)) && xAngVel != 0f)
+        if(!isRotating && xAngVel != 0f)
         {
             if(xAngVel <= 0.1f || xAngVel >= -0.1f)
             {
@@ -75,10 +80,17 @@ public class ShipControls : MonoBehaviour
             else if (xAngVel < 0f)
             xAngVel += angleVelDrag * Time.deltaTime;
         }
-        xAngVel += Input.GetAxis("Horizontal") * rotationStrength * Time.deltaTime;
+        xAngVel += rotationDirection * rotationStrength * Time.deltaTime;
 
         rb.angularVelocity = new Vector3(xAngVel,0f,0f);
     }
+
+    public void ShipRotationBool(bool ir)
+    {
+        isRotating = ir;
+    }
+
+    #endregion
 
     public void DeathFX()
     {
@@ -104,8 +116,6 @@ public class ShipControls : MonoBehaviour
     {
         if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
         {
-            
-
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
         }

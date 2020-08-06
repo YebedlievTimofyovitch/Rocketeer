@@ -29,17 +29,12 @@ public class ShipCannon : MonoBehaviour
             shipCrashBool = shipC.hasCrashed;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !shipCrashBool)
-        {
-            ShootRound();
-        }
-
         CannonTemperatureMangement();
         CannonStatusTextManagemnt();
         SliderManagement();
     }
 
-    private void ShootRound()
+    public void ShootRound()
     {
         if (!isHeated && cannonHeat < 99f)
         {
