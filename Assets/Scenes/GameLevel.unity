@@ -17961,6 +17961,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 555968231, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1473627
+      objectReference: {fileID: 0}
+    - target: {fileID: 555968231, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
+      propertyPath: m_Center.y
+      value: 0.15401614
+      objectReference: {fileID: 0}
+    - target: {fileID: 555968231, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
+      propertyPath: m_Size.z
+      value: 1.7319286
+      objectReference: {fileID: 0}
+    - target: {fileID: 555968231, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
+      propertyPath: m_Center.z
+      value: -0.012615571
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
 --- !u!4 &1274299579590728020 stripped
