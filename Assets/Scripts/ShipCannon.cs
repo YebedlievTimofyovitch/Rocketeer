@@ -9,14 +9,16 @@ public class ShipCannon : MonoBehaviour
     [SerializeField] private float cannonCoolDown = 10f;
     private float cannonHeat = 0f;
 
-    private ParticleSystem cannonPS = null;
+
+
+    [SerializeField] private ParticleSystem cannonPS = null;
     [SerializeField] private Slider HeatSlider = null;
     [SerializeField] private Text CannonSatutsText = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        cannonPS = GetComponent<ParticleSystem>();
+
     }
 
     private void Update()

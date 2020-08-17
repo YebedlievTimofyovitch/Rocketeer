@@ -10,10 +10,13 @@ public class ShipControls : MonoBehaviour
     [SerializeField] private float rotationStrength = 10f;
     [SerializeField] private float angleVelDrag = 10f;
 
+    [SerializeField] private ParticleSystem[] deathVFX = new ParticleSystem[2] { null, null };
+
     [SerializeField] private ParticleSystem ThrusterPS = null;
     [SerializeField] private float deathForce = 10f;
     
     public static bool hasCrashed = false;
+    private bool hasDied = false;
     private Vector3 deathForceDirection = Vector3.zero;
 
     private bool isRotating = false;
@@ -37,7 +40,7 @@ public class ShipControls : MonoBehaviour
             ShipThrust();
             ShipRotaion(0f);
         }
-        else if(hasCrashed)
+        else if(hasCrashed && !hasDied)
         {
             DeathFX();
         }
@@ -102,15 +105,17 @@ public class ShipControls : MonoBehaviour
 
     public void DeathFX()
     {
-        if (!hasCrashed)
+        if (hasCrashed)
         {
             DeathPhysics();
 
-            
+            StartCoroutine(DeathParticles());
 
-            hasCrashed = true;
+            hasDied = true;
         }
     }
+
+
 
     private void DeathPhysics()
     {
@@ -126,6 +131,20 @@ public class ShipControls : MonoBehaviour
         {
             deathForceDirection = obstacle.GetContact(0).point - transform.position;
             hasCrashed = true;
+        }
+    }
+
+    private IEnumerator DeathParticles()
+    {
+        foreach(ParticleSystem ps in deathVFX)
+        {
+            ps.Play();
+
+            
+
+            
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
