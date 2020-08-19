@@ -76,13 +76,7 @@ public class Obstacle : MonoBehaviour
             if (childPS != null)
             {
                 childPS.transform.parent = null;
-                AudioSource cpoAudio = childPS.GetComponent<AudioSource>();
                 ParticleSystem cpoParticleSystem = childPS.GetComponent<ParticleSystem>();
-
-                if(cpoAudio != null)
-                cpoAudio.Play();
-
-                if(cpoParticleSystem != null)
                 cpoParticleSystem.Play();
             }
         }

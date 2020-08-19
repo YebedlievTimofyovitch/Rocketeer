@@ -10,7 +10,7 @@ public class ShipCannon : MonoBehaviour
     private float cannonHeat = 0f;
 
 
-    private AudioSource cannonSound = null;
+
     [SerializeField] private ParticleSystem cannonPS = null;
     [SerializeField] private Slider HeatSlider = null;
     [SerializeField] private Text CannonSatutsText = null;
@@ -18,7 +18,7 @@ public class ShipCannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cannonSound = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -34,7 +34,6 @@ public class ShipCannon : MonoBehaviour
     {
         if (!isHeated && cannonHeat < 99f && !ShipControls.hasCrashed)
         {
-            cannonSound.Play();
             cannonHeat = 100.0f;
             isHeated = true;
             cannonPS.Play();
