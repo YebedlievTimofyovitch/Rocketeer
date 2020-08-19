@@ -12,6 +12,7 @@ public class ShipControls : MonoBehaviour
 
     [SerializeField] private ParticleSystem[] deathVFX = new ParticleSystem[2] { null, null };
 
+    private AudioSource thrusterSound = null;
     [SerializeField] private ParticleSystem ThrusterPS = null;
     [SerializeField] private float deathForce = 10f;
     
@@ -29,6 +30,7 @@ public class ShipControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        thrusterSound = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -64,8 +66,18 @@ public class ShipControls : MonoBehaviour
     #region thruster management
     private void ShipThrust()
     {
-        if(ThrusterOn)
-        rb.AddForce(transform.up * thrustStrength * Time.deltaTime);
+        if (ThrusterOn)
+            rb.AddForce(transform.up * thrustStrength * Time.deltaTime);
+    }
+
+    public void ThrusterSoundPlay()
+    {
+        thrusterSound.volume = 0.4f;
+    }
+
+    public void ThrusterSoundStop()
+    {
+        thrusterSound.volume = 0.0f;
     }
 
     public void TurnThrusterOnOff(bool to)
