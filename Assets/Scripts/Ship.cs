@@ -9,9 +9,16 @@ public class Ship : MonoBehaviour
 
     [SerializeField] private int targetFPS = 30;
     [SerializeField] private Text scoreText = null;
+    [SerializeField] private Text HighScoreText = null;
 
     private void Start()
     {
+        HighScoreText.text = @"High
+Score
+_____
+" +
+            PlayerPrefs.GetInt("HighScore", 0).ToString();
+
         Application.targetFrameRate = 30;
     }
 
@@ -32,5 +39,14 @@ public class Ship : MonoBehaviour
     {
         score += s;
         scoreText.text = "SCORE: " + score.ToString();
+        HighScoreCheck();
+    }
+
+    private void HighScoreCheck()
+    {
+        if(score > PlayerPrefs.GetInt("HighScore",0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
     }
 }

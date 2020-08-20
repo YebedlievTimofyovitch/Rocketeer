@@ -108,9 +108,13 @@ public class ShipControls : MonoBehaviour
     {
         if (hasCrashed)
         {
+            Invoke("ReloadGameLevel", 4f);
+
             DeathPhysics();
 
             StartCoroutine(DeathParticles());
+
+
 
             hasDied = true;
         }
@@ -183,5 +187,11 @@ public class ShipControls : MonoBehaviour
         }
 
         
+    }
+
+    private void ReloadGameLevel()
+    {
+        hasCrashed = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
