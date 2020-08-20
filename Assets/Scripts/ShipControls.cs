@@ -13,6 +13,9 @@ public class ShipControls : MonoBehaviour
 
     [SerializeField] private ParticleSystem[] deathVFX = new ParticleSystem[2] { null, null };
 
+    [SerializeField] private AudioSource thrusterSound = null;
+    [SerializeField] private AudioSource deathExplosionSound = null;
+
     [SerializeField] private ParticleSystem ThrusterPS = null;
     [SerializeField] private float deathForce = 10f;
     
@@ -22,6 +25,7 @@ public class ShipControls : MonoBehaviour
 
     private bool isRotating = false;
     private bool ThrusterOn = false;
+
     private void Awake()
     {
 
@@ -43,6 +47,7 @@ public class ShipControls : MonoBehaviour
         }
         else if(hasCrashed && !hasDied)
         {
+            Invoke("PlayDeathSound", 1f);
             DeathFX();
         }
     }
@@ -67,6 +72,11 @@ public class ShipControls : MonoBehaviour
     {
         if(ThrusterOn)
         rb.AddForce(transform.up * thrustStrength * Time.deltaTime);
+    }
+
+    public void ThrusterVolume(float thv)
+    {
+        thrusterSound.volume = thv;
     }
 
     public void TurnThrusterOnOff(bool to)
@@ -120,7 +130,10 @@ public class ShipControls : MonoBehaviour
         }
     }
 
-
+    private void PlayDeathSound()
+    {
+        deathExplosionSound.Play();
+    }
 
     private void DeathPhysics()
     {
@@ -130,14 +143,7 @@ public class ShipControls : MonoBehaviour
         rb.AddForceAtPosition(-deathForceDirection.normalized * deathForce,transform.position);
     }
 
-    private void OnCollisionEnter(Collision obstacle)
-    {
-        if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
-        {
-            deathForceDirection = obstacle.GetContact(0).point - transform.position;
-            hasCrashed = true;
-        }
-    }
+    
 
     private IEnumerator DeathParticles()
     {
@@ -150,6 +156,15 @@ public class ShipControls : MonoBehaviour
             
 
             yield return new WaitForSeconds(1f);
+        }
+    }
+
+    private void OnCollisionEnter(Collision obstacle)
+    {
+        if(obstacle.transform.tag == "Obstacle"  || obstacle.transform.tag == "ObstacleExp") //|| obstacle.transform.tag == "ObstacleGold")
+        {
+            deathForceDirection = obstacle.GetContact(0).point - transform.position;
+            hasCrashed = true;
         }
     }
 
@@ -191,6 +206,8 @@ public class ShipControls : MonoBehaviour
 
     private void ReloadGameLevel()
     {
+        deathForceDirection = Vector3.zero;
+        hasDied = false;
         hasCrashed = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
