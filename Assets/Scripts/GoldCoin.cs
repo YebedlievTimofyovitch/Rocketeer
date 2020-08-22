@@ -9,10 +9,8 @@ public class GoldCoin : MonoBehaviour
     [SerializeField] private Transform childSparkle = null;
     [SerializeField] private float lerpSpeed = 10f;
 
-
-    [SerializeField] private AudioSource pointCollectionSound = null;
-    private GameObject player = null;
-    private Ship CoinCollector = null;
+     private GameObject player = null;
+     private Ship CoinCollector = null;
 
     private void Start()
     {
@@ -27,7 +25,6 @@ public class GoldCoin : MonoBehaviour
 
     private void CoinCollectionEvent()
     {
-        pointCollectionSound.Play();
         hasCollidedWithPlayer = true;
         CoinCollector.AddToScore(1);
         childSparkle.parent = null;
