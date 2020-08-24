@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5079610890366716560}
   - component: {fileID: 5079610890366716561}
   - component: {fileID: 5079610890366716562}
-  - component: {fileID: 1662045097251146971}
   - component: {fileID: 5848975319599116674}
   - component: {fileID: -1611724135606174621}
+  - component: {fileID: 4818071493974223918}
   m_Layer: 0
   m_Name: ObstacleGold
   m_TagString: Obstacle
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1662045097251146971
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5079610890366716563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -5495902117074765545, guid: e020a33fa7f050e48915e14893570c9f, type: 3}
 --- !u!54 &5848975319599116674
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,6 +122,19 @@ MonoBehaviour:
   childParticleObjects:
   - {fileID: 5296147331640244531}
   - {fileID: 0}
+--- !u!135 &4818071493974223918
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079610890366716563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1101569
+  m_Center: {x: -0.037233826, y: 0.05833715, z: 0.025697527}
 --- !u!1 &5296147331640244531
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8446695431332916013}
   - component: {fileID: -3768003029442289809}
   - component: {fileID: -2604364518999122688}
-  - component: {fileID: 8821812929297649754}
+  - component: {fileID: 814444224453817873}
   m_Layer: 0
   m_Name: ObstacleDeadly
   m_TagString: ObstacleExp
@@ -122,8 +122,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 2
   m_CollisionDetection: 0
---- !u!64 &8821812929297649754
-MeshCollider:
+--- !u!135 &814444224453817873
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,10 +132,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -5495902117074765545, guid: 2f2763cc9a5de474998a5f2b890692e9, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.71974355
+  m_Center: {x: -0.03572926, y: -0.0017205477, z: 0.018349946}
 --- !u!1 &4512988800554038488
 GameObject:
   m_ObjectHideFlags: 0
