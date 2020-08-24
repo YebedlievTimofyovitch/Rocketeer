@@ -59,7 +59,7 @@ public class ObstacleSpawner : MonoBehaviour
                     else if (spawnPercentage >= 75)
                         obstacle = obstacleArray[2];
 
-                    Instantiate(obstacle, gate.SpawnLocation , obstacle.transform.rotation);
+                    Instantiate(obstacle, new Vector3(gate.SpawnLocation.x , transform.position.y, gate.SpawnLocation.z) , obstacle.transform.rotation);
                 }
             }
 
