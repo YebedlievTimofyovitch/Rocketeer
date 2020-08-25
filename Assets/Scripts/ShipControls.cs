@@ -102,7 +102,7 @@ public class ShipControls : MonoBehaviour
             else if (xAngVel < 0f)
             xAngVel += angleVelDrag * Time.deltaTime;
         }
-        xAngVel += rotationDirection * rotationStrength * Time.deltaTime;
+        xAngVel += Mathf.Lerp(xAngVel, rotationDirection, 2f) * rotationStrength * Time.deltaTime;
 
         rb.angularVelocity = new Vector3(xAngVel,0f,0f);
     }
