@@ -8959,8 +8959,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 963194229}
   originPoint: {fileID: 1761172663}
-  shipTransform: {fileID: 1761172663}
+  shipTransform: {fileID: 1777526964}
   Threshold: 1000
+  lerpLag: 4.77
 --- !u!4 &1959463075
 Transform:
   m_ObjectHideFlags: 0
@@ -14292,7 +14293,7 @@ PrefabInstance:
       objectReference: {fileID: 1704095859}
     - target: {fileID: 2013240046, guid: a8f8ff90c519ddc42b523d2949d48370, type: 3}
       propertyPath: cannonCoolDown
-      value: 70
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 66800296460795471, guid: a8f8ff90c519ddc42b523d2949d48370,
         type: 3}
@@ -14308,6 +14309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: rotationStrength
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 66800296460795471, guid: a8f8ff90c519ddc42b523d2949d48370,
+        type: 3}
+      propertyPath: thrustStrength
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1918623961141374848, guid: a8f8ff90c519ddc42b523d2949d48370,
         type: 3}

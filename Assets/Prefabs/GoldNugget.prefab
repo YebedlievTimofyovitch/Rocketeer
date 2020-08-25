@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4235584116160071848}
   - component: {fileID: 4235584116160071847}
   - component: {fileID: 4235584116160071846}
-  - component: {fileID: 4235584116160071850}
+  - component: {fileID: 6172744407481924842}
   m_Layer: 9
   m_Name: GoldNugget
   m_TagString: Untagged
@@ -97,8 +97,8 @@ MonoBehaviour:
   childSparkle: {fileID: 4235584118163924348}
   lerpSpeed: 1
   pointCollectionSound: {fileID: 8713744639591239897}
---- !u!64 &4235584116160071850
-MeshCollider:
+--- !u!135 &6172744407481924842
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,10 +107,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -5495902117074765545, guid: 052ae8f102174b841872307467b8b0e8, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.7558194
+  m_Center: {x: 0.0076458603, y: 0.0046518445, z: 0.019037575}
 --- !u!1 &4235584118163924347
 GameObject:
   m_ObjectHideFlags: 0

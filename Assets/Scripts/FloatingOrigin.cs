@@ -13,7 +13,7 @@ public class FloatingOrigin : MonoBehaviour
 
     private float distanceFromOrigin = 0.0f;
 
-    private float lerpLag = 0.02f;
+    [SerializeField]private float lerpLag = 0.02f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +34,12 @@ public class FloatingOrigin : MonoBehaviour
 
     private void MoveLevelMainObjectsWithPlayer()
     {
-        if(shipTransform.position.y > transform.position.y)
+
+        if(transform.position.y < shipTransform.position.y)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + shipTransform.position.y, transform.position.z) , lerpLag);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, shipTransform.position.y, transform.position.z), lerpLag);
         }
+        
     }
 
     private void ReturnSceneObjectsToRootPosition()

@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationStrength: 2
-  speed: 2
+  speed: 1.5
   expRadius: 0
   explosionForce: 0
   shouldDropNugget: 0
@@ -132,8 +132,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.09
-  m_Center: {x: 0.019359078, y: -0.13507797, z: -0.031751677}
+  m_Radius: 0.97889894
+  m_Center: {x: 0.15019502, y: -0.13507791, z: -0.05477558}
 --- !u!1 &1415427142587035267
 GameObject:
   m_ObjectHideFlags: 0

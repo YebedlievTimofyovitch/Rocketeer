@@ -52,9 +52,9 @@ public class ObstacleSpawner : MonoBehaviour
 
                     GameObject obstacle = null;
 
-                    if (spawnPercentage <= 49)
+                    if (spawnPercentage <= 64)
                         obstacle = obstacleArray[0];
-                    else if (spawnPercentage >= 50 && spawnPercentage <= 74)
+                    else if (spawnPercentage >= 65 && spawnPercentage <= 74)
                         obstacle = obstacleArray[1];
                     else if (spawnPercentage >= 75)
                         obstacle = obstacleArray[2];

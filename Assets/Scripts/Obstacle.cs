@@ -22,8 +22,8 @@ public class Obstacle : MonoBehaviour
     {
         obstacleRB = GetComponent<Rigidbody>();
 
-        speed = Random.Range(1f,2f);
-        obstacleRB.velocity = (Vector3.down *  speed);
+        
+        obstacleRB.velocity = (Vector3.down * Random.Range(speed/2,speed));
 
         RotateObstacle();
     }
