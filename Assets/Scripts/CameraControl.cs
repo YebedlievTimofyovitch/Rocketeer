@@ -31,8 +31,8 @@ public class CameraControl : MonoBehaviour
 
         if (hasPlayerTransitioned && !hasCamera_Finished_InitialTransition)
         {
-            TrackInitialTransition();
-            MoveCamera();
+            TrackPlayerTransition();
+           
         }
     }
     
@@ -49,9 +49,8 @@ public class CameraControl : MonoBehaviour
         }
     }
 
-    private void TrackInitialTransition()
+    private void TrackPlayerTransition()
     {
-        if (transform.position.y >= playerTransform.position.y - 3f)
             hasCamera_Finished_InitialTransition = true;
     }
 
